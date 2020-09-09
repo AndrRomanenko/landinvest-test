@@ -1,10 +1,10 @@
 import React from "react";
 import { remainingTimeFormat } from "../../utils/remainingTimeFormat";
 
-import { CardContainer, Title, Info, ButtonsContainer } from "./styled";
+import { CardContainer, Title, Info, Label, ButtonsContainer } from "./styled";
 import Button from "../../shared/Button";
 
-const LoanCard = ({ loanData }) => {
+const LoanCard = ({ loanData, onInvestClick }) => {
   const {
     id,
     title,
@@ -14,11 +14,13 @@ const LoanCard = ({ loanData }) => {
     term_remaining,
     ltv,
     amount,
+    invested = false,
   } = loanData;
 
   return (
     <CardContainer>
       <Title>{title}</Title>
+      {invested && <Label>invested</Label>}
       <Info>
         Loan id: {id}
         <br />
@@ -35,7 +37,7 @@ const LoanCard = ({ loanData }) => {
         Amount: £{amount}
       </Info>
       <ButtonsContainer>
-        <Button>Invest</Button>
+        <Button onClick={onInvestClick}>Invest</Button>
       </ButtonsContainer>
     </CardContainer>
   );
